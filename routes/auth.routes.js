@@ -1,6 +1,8 @@
+require('dotenv/config');
 const router = require("express").Router();
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const MovieDBService = require('../service/moviedb.service');
 
 const saltRounds = 12;
 
@@ -55,7 +57,7 @@ router.post("/signup", isLoggedOut, (req, res, next) => {
       .then((user) => {
         req.session.currentUser = user;
         res.redirect("/");
-        
+
       })
       .catch((error) => {
         if (error instanceof mongoose.Error.ValidationError) {
@@ -101,9 +103,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
             errorMessage: "Incorrect password",
           });
         }
-        console.log(req.session)
         req.session.currentUser = user;
-        console.log(req.session)
         res.redirect("/");
       });
     })

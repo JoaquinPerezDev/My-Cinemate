@@ -1,2 +1,9 @@
 <h1>{{appTitle}} 🚀</h1>
-<p>Welcome Ironhacker!</p>
+
+{{#each moviesArray}}
+   <img src="https://www.themoviedb.org/t/p/w220_and_h330_face{{poster_path}}" alt=""> 
+   <p>{{title}}</p>
+   <p>{{release_date}}</p>
+{{/each}}
+
+

@@ -20,7 +20,11 @@ class MovieDBService {
     getTrendingWeeklyTv = () => {
         return this.api.get('/trending/tv/week');
     };
-
+    
+    getTrendingWeeklyPeople = () => {
+        return this.api.get('/trending/person/week');
+    };
+    
     getTrendingDailyMovies = () => {
         return this.api.get('/trending/movie/day');
     };
@@ -28,6 +32,11 @@ class MovieDBService {
     getTrendingDailyTv = () => {
         return this.api.get('/trending/tv/day');
     };
+    
+    getTrendingDailyPeople = () => {
+        return this.api.get('/trending/person/day');
+    };
+
     
 }
    

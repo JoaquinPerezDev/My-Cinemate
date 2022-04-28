@@ -35,4 +35,12 @@ router.post('/posts/:postId/comment', isLoggedIn, (req, res, next) => {
         });
 });
 
+router.post('/posts/:postId/comment', isLoggedIn, (req, res, next) => {
+    const { postId } = req.params;
+
+    Comment.findByIdAndDelete(postId)
+        .then(() => res.redirect('/posts'))
+        .catch(err => next(err));
+});
+
 module.exports = router;

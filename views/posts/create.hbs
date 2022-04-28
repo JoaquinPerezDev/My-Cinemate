@@ -1,14 +1,10 @@
 <h2>Create a new post!</h2>
- 
-<form action="/posts/create" method="post">
+ {{#if movieId}}
+<form action="/posts/create?movieId={{movieId}}" method="post">
   <label> Title:
     <input type="text" name="title" />
   </label>
- 
-  <label> Author:
-    <input type="text" name="author" />
-  </label>
- 
+
   <label> Content:
     <textarea name="content" cols="30" rows="10"> </textarea>
   </label>
@@ -19,3 +15,21 @@
  
   <button type="submit"> Create </button>
 </form>
+
+{{else}}
+<form action="/posts/create?tvId={{tvId}}" method="post">
+  <label> Title:
+    <input type="text" name="title" />
+  </label>
+
+  <label> Content:
+    <textarea name="content" cols="30" rows="10"> </textarea>
+  </label>
+ 
+  <label> Rate:
+    <input type="number" name="rating" min="1" max="5" />
+  </label>
+ 
+  <button type="submit"> Create </button>
+</form>
+{{/if}}

@@ -1,11 +1,16 @@
 <h2>{{title}}</h2>
+{{#if movieDetailsObject}}
+{{!-- get all the movie details to load on this page for the review/post --}}
+{{else}}
+{{!-- get all the tv details to load on this page for the review/post --}}
 
+{{/if}}
 
 <div>
-    written by: {{author.username}}
+    written by: {{foundPost.author.username}}
 </div>
 <div>
-    {{content}}
+    {{foundPost.content}}
 </div>
 
 {{#unless comments}}

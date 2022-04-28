@@ -2,36 +2,66 @@ const router = require("express").Router();
 
 const User = require("../models/User.model");
 const Post = require("../models/Post.model");
+const Comment = require("../models/Comment.model");
 const isLoggedIn = require("../middleware/isLoggedIn");
+const MovieDBService = require('../service/moviedb.service');
+const movieDatabase = new MovieDBService();
 
-router.get("/post-create", (req, res, next) => {
-    User.find()
-    .then((dbUsers) => {
-        res.render("posts/create", { dbUsers });
-    })
-    .catch((err) => console.log(`error while displaying the post: ${err}`));
+
+router.get("/posts/create", isLoggedIn, (req, res, next) => {
+    let movieId, tvId;
+    if(req.query.movieId) {
+        movieId = req.query.movieId;
+        User.findById(req.session.currentUser._id)
+        .then((dbUser) => {
+            res.render("posts/create", { dbUser, movieId });
+        })
+        .catch((err) => console.log(`error while displaying the post: ${err}`));
+    } else {
+        tvId = req.query.tvId;
+        User.findById(req.session.currentUser._id)
+        .then((dbUser) => {
+            res.render("posts/create", { dbUser, tvId });
+        })
+        .catch((err) => console.log(`error while displaying the post: ${err}`));
+    }
 });
 
-router.post('/post-create', isLoggedIn, (req, res, next) => {
-    const { title, content, author, rating } = req.body;
+router.post('/posts/create', isLoggedIn, (req, res, next) => {
+    const { title, content, rating } = req.body;
+    let movieId, tvId;
+    const author = req.session.currentUser._id;
 
-    Post.create({ title, content, author, rating })
+    if(req.query.movieId) {
+        movieId = req.query.movieId
+        Post.create({ title, content, rating, movieId, author })
         .then(dbPost => {
             return User.findByIdAndUpdate(author, { $push: { posts: dbPost._id } });
         })
-        .then(() => res.redirect('/posts'))
+        .then(() => res.redirect('/post-list'))
         .catch(err => {
-            errorMessage: `Error while creating the post! ${err}`;
-            next(err);
+            throw new Error(`Error while creating the post! ${err}`);
         });
+    } else {
+        tvId = req.query.tvId
+        Post.create({ title, content, rating, tvId, author })
+        .then(dbPost => {
+            return User.findByIdAndUpdate(author, { $push: { posts: dbPost._id } });
+        })
+        .then(() => res.redirect('/post-list'))
+        .catch(err => {
+            throw new Error(`Error while creating the post! ${err}`);
+        });
+    }
+
+
 });
 
-router.get('/post-list', isLoggedIn, (req, res, next) => {
+router.get('/post-list', (req, res, next) => {
     Post.find()
         .populate('author')
         .then(dbPosts => {
             res.render('posts/post-list', { dbPosts });
-             
         })
         .catch(err => {
             console.log(`Err retrieving posts from database: ${err}`);
@@ -43,7 +73,7 @@ router.get('/posts/:postId', (req, res, next) => {
     const { postId } = req.params;
 
     Post.findById(postId)
-        .populate('author comments')
+        .populate('author')
         .populate({
             path: 'comments',
             populate: {
@@ -51,7 +81,22 @@ router.get('/posts/:postId', (req, res, next) => {
                 model: 'User'
             }
         })
-        .then(foundPost => res.render('posts/post-detail', foundPost))
+        .then(foundPost => {
+        if(foundPost.movieId) {
+            movieDatabase.getMovieDetails(foundPost.movieId)
+                .then(movieDetailsObject => {
+                    res.render("posts/post-detail", { foundPost, movieDetailsObject })
+                })
+                .catch(error => console.log(error));
+        } else {
+            movieDatabase.getTvDetails(foundPost.tvId)
+            .then(tvDetailsObject => {
+                res.render("posts/post-detail", { foundPost, tvDetailsObject })
+            })
+            .catch(error => console.log(error));
+        }
+        })
+            // res.render('posts/post-detail', foundPost))
         .catch(err => {
             console.log(`Err retreiving the post from the database: ${err}`);
             next(err);
@@ -74,6 +119,14 @@ router.post('/posts/:postId/edit', (req, res, next) => {
 
     Post.findByIdAndUpdate(postId, { title, content, rating }, { new: true })
         .then(updatePost => res.redirect(`/posts/${updatePost.id}`))
+        .catch(err => next(err));
+});
+
+router.post('/posts/:postId/edit', (req, res, next) => {
+    const { postId } = req.params;
+
+    Post.findByIdAndDelete(postId)
+        .then(() => res.redirect(/posts/))
         .catch(err => next(err));
 });
 

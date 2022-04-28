@@ -1,0 +1,21 @@
+<div>
+{{#if moviesArray}}
+    <h1>Movies' Details</h1>
+
+   <a href="/project-detail" alt="movie details"><img src="https://www.themoviedb.org/t/p/w220_and_h330_face{{poster_path}}" alt="{{title}}"></a> 
+   <p><strong>{{title}}</strong></p>
+   <p>{{release_date}}</p>
+{{/if}}
+</div>
+
+<div>
+    
+{{#if tvArray}}
+    <h1>TV Shows' Details</h1>
+
+   <a href="/project-detail" alt="tv details"><img src="https://www.themoviedb.org/t/p/w220_and_h330_face{{poster_path}}" alt="{{title}}"></a>
+   <p><strong>{{name}}</strong></p>
+   <p>Originally First Aired: <br>{{first_air_date}}</p>
+
+{{/if}}
+</div>

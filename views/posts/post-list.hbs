@@ -1,11 +1,13 @@
 <h2>Posts</h2>
 
 <ul>
-    {{#each posts}}
+    {{#each dbPosts}}
     <li> 
         {{this.title}} by {{this.author.username}}
-        <a href="/posts/{{this._id}}">Read more from this author</a>
+        <a href="/posts/{{this._id}}">link to post details</a>
+        <a href="/posts/author/{{this.author._id}}">Read more from this author</a>
         <a href="/posts/{{this._id}}/edit">Edit post</a>
+
 
         <form action="/posts/{{_id}}/delete" method="post">
         <button>Delete</button>

@@ -37,7 +37,14 @@ class MovieDBService {
         return this.api.get('/trending/person/day');
     };
 
-    
+    getMovieDetails = (movieId) => {
+        return this.api.get(`/movie/${movieId}`);
+    }
+
+    getTvDetails = (tvId) => {
+        return this.api.get(`/tv/${tvId}`);
+    }
+
 }
    
   module.exports = MovieDBService;

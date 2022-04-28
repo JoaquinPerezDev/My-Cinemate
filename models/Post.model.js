@@ -10,6 +10,9 @@ const postSchema = new Schema(
       type: String
     },
     author: {type: Schema.Types.ObjectId, ref: 'User' },
+    movieId: String,
+    tvId: String,
+    comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

@@ -1,9 +1,21 @@
 <h1>{{appTitle}} 🚀</h1>
 
+<div>
+    <h1>Movies</h1>
 {{#each moviesArray}}
-   <img src="https://www.themoviedb.org/t/p/w220_and_h330_face{{poster_path}}" alt=""> 
-   <p>{{title}}</p>
+   <a href="/movie-details/{{id}}" alt="movie details"><img src="https://www.themoviedb.org/t/p/w220_and_h330_face{{poster_path}}" alt="{{title}}"></a> 
+   <p><strong>{{title}}</strong></p>
    <p>{{release_date}}</p>
 {{/each}}
+</div>
+<div>
+    <h1>TV Shows</h1>
+{{#each tvArray}}
+   <a href="/tv-details/{{id}}" alt="tv details"><img src="https://www.themoviedb.org/t/p/w220_and_h330_face{{poster_path}}" alt="{{title}}"></a>
+   <p><strong>{{name}}</strong></p>
+   <p>Originally First Aired: <br>{{first_air_date}}</p>
+
+{{/each}}
+</div>
 
 

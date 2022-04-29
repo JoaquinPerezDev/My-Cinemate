@@ -50,3 +50,22 @@ h1 {
 .carousel-inner {
   border-radius: 2%;
 }
+
+#login-form {
+  margin-left: 30%;
+  margin-top: 10%;
+  margin-bottom: 60%;
+  border-radius: 5%;
+}
+
+#signup-form {
+  margin-left: 30%;
+  margin-top: 10%;
+  margin-bottom: 50%;
+  border-radius: 5%;
+}
+
+#review-link {
+  margin-left: 40%;
+}
+

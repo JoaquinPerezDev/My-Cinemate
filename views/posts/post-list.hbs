@@ -1,11 +1,11 @@
-<h2>Posts</h2>
-
+<h1 class="display-3 d-flex justify-content-center">Reviews</h1>
+          
 <div class="card-group" style="card-group">
     {{#each dbPosts}}
 <div class="col-3 align-items-stretch mt-2 mb-2" >
   <div class="card-body">
     <h5 class="card-title font-weight-bold">{{this.title}}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">by {{this.author}}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">by {{this.author.username}}</h6>
         <a href="/posts/{{this._id}}">Read more</a><br>
         <a href="/posts/author/{{this.author.username}}">other reviews</a>
   </div>

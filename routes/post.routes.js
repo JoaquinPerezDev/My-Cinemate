@@ -85,6 +85,7 @@ router.get('/posts/:postId', (req, res, next) => {
         if(foundPost.movieId) {
             movieDatabase.getMovieDetails(foundPost.movieId)
                 .then(movieDetailsObject => {
+                    console.log(foundPost)
                     res.render("posts/post-detail", { foundPost, movieDetailsObject })
                 })
                 .catch(error => console.log(error));

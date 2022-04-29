@@ -19,23 +19,20 @@
 
 {{/if}}
 
-{{#unless comments}}
+{{#unless foundPost.comments}}
     <p>No comments yet!</p>
 {{/unless}}
 
-{{#each comments}}
+{{#each foundPost.comments}}
     <p><b>{{this.author.username}}:<b> {{this.content}}</p>
+    
 {{/each}}
 
 
 <div>
     <h3>Start a conversation!</h3>
 </div>
-<form action="/posts/:postId/comment" method="post">
-<label>
-    Your username: 
-    <input type="text" name="author" />
-</label>
+<form action="/posts/{{foundPost._id}}/comment" method="post">
 
 <input type="text" name="postAuthor" value="{{author.username}}" hidden />
 <textarea name="content" id="" cols="30" rows="3"></textarea>
@@ -43,4 +40,4 @@
 <button type="submnit">Comment</button>
 </form>
 
-<a href="users/:postId/posts">See all {{foundPost.author.username}}'s posts</a>
+{{!-- <a href="/{{foundPost._id}}/posts">See all {{foundPost.author.username}}'s posts</a> --}}

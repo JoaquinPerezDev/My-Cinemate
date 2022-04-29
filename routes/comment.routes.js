@@ -9,8 +9,9 @@ router.post('/posts/:postId/comment', isLoggedIn, (req, res, next) => {
     const { postId } = req.params;
     const { author, content } = req.body;
 
-    let user;
+    let user = req.session.currentUser;
 
+    console.log(user, postId, req.params)
     Post.findById(postId)
     .then(dbPost => {
         let newComment;
@@ -33,12 +34,12 @@ router.post('/posts/:postId/comment', isLoggedIn, (req, res, next) => {
     });
 })
 
-router.post('/posts/:postId/comment', isLoggedIn, (req, res, next) => {
-    const { postId } = req.params;
+// router.post('/posts/:postId/comment/delete', isLoggedIn, (req, res, next) => {
+//     const { postId } = req.params;
 
-    Comment.findByIdAndDelete(postId)
-        .then(() => res.redirect('/posts'))
-        .catch(err => next(err));
-});
+//     Comment.findByIdAndDelete(postId)
+//         .then(() => res.redirect('/posts'))
+//         .catch(err => next(err));
+// });
 
 module.exports = router;

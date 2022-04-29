@@ -118,16 +118,29 @@ router.post('/posts/:postId/edit', (req, res, next) => {
     const { title, content, rating } = req.body;
 
     Post.findByIdAndUpdate(postId, { title, content, rating }, { new: true })
-        .then(updatePost => res.redirect(`/posts/${updatePost.id}`))
+        .then(updatePost => res.redirect('/post-list'))
         .catch(err => next(err));
 });
 
-router.post('/posts/:postId/edit', (req, res, next) => {
+router.post('/posts/:postId/delete', (req, res, next) => {
     const { postId } = req.params;
 
     Post.findByIdAndDelete(postId)
-        .then(() => res.redirect(/posts/))
+        .then(() => res.redirect('/post-list'))
         .catch(err => next(err));
+});
+
+router.get('/posts/author/:userId', (req, res, next) => {
+    const { userId } = req.params;
+    // const author = req.session.currentUser;
+console.log(userId)
+    User.findById(userId)
+        .populate('posts')
+        .then(user => {
+            console.log(user)
+            res.render('posts/author-posts', { posts: user.posts })
+        })
+        .catch(error => console.log(error));
 });
 
 module.exports = router;

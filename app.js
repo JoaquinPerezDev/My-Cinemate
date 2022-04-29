@@ -19,9 +19,9 @@ const app = express();
 require("./config")(app);
 
 const capitalized = require("./utils/capitalized");
-const projectName = "movie-app";
+const projectName = "Cinemate";
 
-app.locals.appTitle = `${capitalized(projectName)} created with IronLauncher`;
+app.locals.appTitle = `Welcome to ${capitalized(projectName)}`;
 
 app.use((req, res, next) => {
     if(!req.session.currentUser) {

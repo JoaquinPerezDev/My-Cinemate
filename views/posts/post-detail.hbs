@@ -1,10 +1,3 @@
-<h2>{{title}}</h2>
-{{#if movieDetailsObject}}
-{{!-- get all the movie details to load on this page for the review/post --}}
-{{else}}
-{{!-- get all the tv details to load on this page for the review/post --}}
-
-{{/if}}
 
 <div>
     written by: {{foundPost.author.username}}
@@ -12,6 +5,19 @@
 <div>
     {{foundPost.content}}
 </div>
+
+
+{{#if movieDetailsObject}}
+<h2>{{title}}</h2>
+<img src="https://www.themoviedb.org/t/p/w220_and_h330_face{{poster_path}}" alt="{{title}}"> 
+{{!-- get all the movie details to load on this page for the review/post --}}
+{{else}}
+<h2>{{tvDetailsObject.title}}</h2>
+<img src="https://www.themoviedb.org/t/p/w220_and_h330_face{{poster_path}}" alt="{{title}}"> 
+
+{{!-- get all the tv details to load on this page for the review/post --}}
+
+{{/if}}
 
 {{#unless comments}}
     <p>No comments yet!</p>
@@ -25,7 +31,7 @@
 <div>
     <h3>Start a conversation!</h3>
 </div>
-<form action="/posts/{{_id}}/comment" method="post">
+<form action="/posts/:postId/comment" method="post">
 <label>
     Your username: 
     <input type="text" name="author" />
@@ -37,4 +43,4 @@
 <button type="submnit">Comment</button>
 </form>
 
-<a href="users/{{author._id/posts}}">See all {{author.username}}'s posts</a>
+<a href="users/:postId/posts">See all {{foundPost.author.username}}'s posts</a>

@@ -26,7 +26,7 @@ router.get("/people-list", isLoggedIn, (req, res, next) => {
   movieDatabase
   .getTrendingWeeklyPeople()
   .then((responseArray) => {
-    res.render("people-list", { peopleArray: responseArray[2].data.results })
+    res.render("people-list", { peopleArray: responseArray.data.results })
   })
   .catch(error => console.log(error));
 })
@@ -46,8 +46,13 @@ router.get("/movie-details/:id", (req, res, next) => {
 
 router.get("/tv-details/:id", (req, res, next) => {
   const { id } = req.params;
-
-  res.render("tv-details", );
+  
+  movieDatabase.getTvDetails(id)
+    .then((tvDetailsObject) => {
+      console.log(tvDetailsObject)
+      res.render("tv-details", tvDetailsObject.data);
+    })
+    .catch(error => console.log(error));
 });
 
 module.exports = router;

@@ -1,6 +1,10 @@
 <h1>Movie details</h1>
 
-{{name}}
+<h2>{{name}}</h2>
+<img src="https://www.themoviedb.org/t/p/w220_and_h330_face{{poster_path}}" alt="{{title}}">
+<p>Runtime:{{runtime}} minutes</p> 
+<p>Genres:{{#each genres}} {{name}} {{/each}}</p> 
+<p>Vote Average:{{vote_average}}</p> 
 {{overview}}
 
 

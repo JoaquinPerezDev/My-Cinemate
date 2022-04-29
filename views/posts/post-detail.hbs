@@ -4,6 +4,11 @@
 </div>
 <div>
     {{foundPost.content}}
+    {{foundPost.rating}}
+</div>
+<div>
+            <a href="/posts/{{foundPost._id}}/edit">Edit your review</a><br>
+              <a href="/posts/{{foundPost._id}}/delete">Delete your review</a><br>
 </div>
 
 
@@ -25,7 +30,7 @@
 
 {{#each foundPost.comments}}
     <p><b>{{this.author.username}}:<b> {{this.content}}</p>
-    
+
 {{/each}}
 
 

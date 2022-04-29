@@ -83,10 +83,9 @@ router.post("/login", isLoggedOut, (req, res, next) => {
   const { username, password } = req.body;
 
   if (username === '' || password === '') {
-    res.render('auth/login', {
+   return res.render('auth/login', {
       errorMessage: 'Please enter both username and password to login.'
     });
-    return;
   }
 
   User.findOne({ username })

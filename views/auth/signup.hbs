@@ -1,22 +1,31 @@
-<form action="/signup" method="POST">
-   <div>
-      <label> Email
-         <input type="email" name="email" placeholder="your Email here">
-      </label>
-   </div>   
-   <div>
-      <label> Username
-         <input type="text" name="username" placeholder="your Username here">
-      </label>
-   </div>
-   <div>
-      <label> Password
-         <input type="password" name="password" placeholder="********">
-      </label>
-   </div>
-
-   <button type="submit">Submit</button>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+ <form action="/signup" method="POST">
+  <div class="form-group">
+    <label>Username
+    <input type="username" name="username" class="form-control" placeholder="Enter username">
+    </label>
+    <label>Email
+    <input type="email" name="email" class="form-control" placeholder="Enter email">
+    </label>
+  </div>
+  <div class="form-group">
+    <label>Password
+    <input type="password" name="password" class="form-control" placeholder="Password">
+  </label>
+  <small class="form-text text-muted">We'll never share your information with anyone else.</small> 
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">I'm awesome</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><a href="/login" class="stretched-link">Already have an account? Log in!</a></li>
+  </ul>
+  </div>
+</div>
 
 {{#if errorMessage}}
    {{errorMessage}}

@@ -27,7 +27,7 @@ app.use((req, res, next) => {
     if(!req.session.currentUser) {
         app.set('view options', { layout: 'logged-out-layout' });
     } else {
-        app.set('view options', { layout: 'logged-in-layout'});
+        app.set('view options', { layout: 'logged-in-layout' });
     }
     next()
 });

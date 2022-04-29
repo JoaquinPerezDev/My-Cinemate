@@ -1,12 +1,52 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 20px 'PT Sans Narrow', sans-serif;
+  background-color:#a7f5e4;
 }
 
 a {
-  color: #00b7ff;
+  color: #35ac92;
 }
 
 h1 {
-  color: 15px;
+  color: #3aa890;
+}
+
+#posters {
+  max-height: 300px; 
+  object-fit: cover;
+  border-top-left-radius: 10%;
+  border-top-right-radius: 10%;
+}
+
+#nav-bg{ 
+  border-radius: 9%;
+}
+
+#card {
+  border-radius: 10%;
+}
+
+.navbar-brand {
+  color: #49af9a;
+}
+
+.nav-link {
+  color: #4ae7c5;
+}
+
+.navbar {
+  background-color: #024537;
+}
+
+.navbar-toggler { 
+  background-color: #4ae7c5;
+  border-radius: 30%;
+}
+
+.navbar-toggle-icon {
+  color: #024537;
+}
+.carousel-inner {
+  border-radius: 2%;
 }

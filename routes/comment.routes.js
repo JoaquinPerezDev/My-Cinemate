@@ -11,7 +11,6 @@ router.post('/posts/:postId/comment', isLoggedIn, (req, res, next) => {
 
     let user = req.session.currentUser;
 
-    console.log(user, postId, req.params)
     Post.findById(postId)
     .then(dbPost => {
         let newComment;

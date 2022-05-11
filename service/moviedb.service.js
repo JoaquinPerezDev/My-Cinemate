@@ -13,15 +13,12 @@ class MovieDBService {
             'Content-Type': 'application/json;charset=utf-8' 
         } 
       });
-    //   this.currentLanguage = 'es';
+      this.currentLanguage = 'es';
     }
    
-    toggleLanguage = () => {
-        if(this.currentLanguage == 'es') {
-            this.currentLanguage = 'en'; 
-        } else {
-            this.currentLanguage = 'es';
-        }
+    toggleLanguage = (lang) => {
+        this.currentLanguage = lang;
+        //toggles between any language, stored in our session. for future additions to languages.
     }
 
     getTrendingWeeklyMovies = () => {

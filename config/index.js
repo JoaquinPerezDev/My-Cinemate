@@ -25,8 +25,13 @@ const session = require("express-session");
 // https://www.npmjs.com/package/connect-mongo
 const MongoStore = require("connect-mongo");
 
+const MovieDBService = require("../service/moviedb.service");
+
 // Connects the mongo uri to maintain the same naming structure
 const MONGO_URI = require("../utils/consts");
+const app = require("../app");
+
+const langMiddleware = require("../middleware/langMiddleware");
 
 // Middleware configuration
 module.exports = (app) => {
@@ -61,4 +66,11 @@ module.exports = (app) => {
       }),
     })
   );
+    
+
+
+  app.use(langMiddleware);
+
 };
+
+

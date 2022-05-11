@@ -22,30 +22,30 @@
   </div>
     </div>
 </div>
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center container">
       <h1 class="display-1" id="main-title">{{appTitle}}</h1>
 </div>
 <br>
 <br>
 <br>
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center container">
     <h1>Movies</h1>
 </div>
-<div class="d-flex justify-content-center">
-    <h3>Trending This Week</h3>
+<div class="d-flex justify-content-center container">
+    <h3>Trending <br>This Week</h3>
 </div>
 
 
 
-<div class="card-group" id="card-group">
+<div class="card-group container" id="card-group" >
 {{#each moviesArray}}
-<div class="col-3 align-items-stretch mt-2 mb-2" >
+<div class="container col-sm-3 align-items-stretch mt-2 mb-2" >
   <div class="card h-100 text-center" id="card">
     <img class="card-img-top" id="posters" src="https://www.themoviedb.org/t/p/w220_and_h330_face{{poster_path}}" alt="{{title}}">
     <div class="card-body">
-      <p class="card-title font-weight-bold">{{title}}</p>
+      <h4 class="card-title font-weight-bold">{{title}}</h4>
       <p class="card-text">release date:<br>{{release_date}}</p>
-        <a href="/movie-details/{{id}}" alt="movie details"class="card-link">Movie details</a>
+        <a href="/movie-details/{{id}}" alt="movie details" class="card-link">Movie details</a>
     </div>
   </div>
   </div>
@@ -54,19 +54,19 @@
 <br>
 <br>
 <br>
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center container">
     <h1>TV Shows</h1>
 </div>
-<div class="d-flex justify-content-center">
-    <h3>Trending This Week</h3>
+<div class="d-flex justify-content-center container">
+    <h3>Trending <br>This Week</h3>
 </div>
-<div class="card-group">
+<div class="card-group container">
 {{#each tvArray}}
-<div class="col-3 align-items-stretch mt-2 mb-2">
+<div class="container col-sm-3 align-items-stretch mt-2 mb-2">
   <div class="card h-100 text-center" id="card">
     <img class="card-img-top" id="posters" src="https://www.themoviedb.org/t/p/w220_and_h330_face{{poster_path}}" alt="{{title}}">
     <div class="card-body">
-      <p class="card-title font-weight-bold">{{name}}</p>
+      <h4 class="card-title font-weight-bold">{{name}}</h4>
       <p class="card-text">release date:<br>{{first_air_date}}</p>
         <a href="/tv-details/{{id}}" alt="tv details" class="card-link">Show details</a>
     </div>

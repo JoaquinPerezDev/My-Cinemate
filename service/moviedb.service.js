@@ -3,6 +3,8 @@
 const axios = require('axios');
  
 class MovieDBService {
+    static currentLanguage = 'es';
+
     constructor() {
       this.api = axios.create({
         baseURL: 'https://api.themoviedb.org/3',
@@ -11,7 +13,7 @@ class MovieDBService {
             'Content-Type': 'application/json;charset=utf-8' 
         } 
       });
-      this.currentLanguage = 'es';
+    //   this.currentLanguage = 'es';
     }
    
     toggleLanguage = () => {

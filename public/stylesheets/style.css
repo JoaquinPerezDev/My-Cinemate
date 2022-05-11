@@ -20,7 +20,7 @@ h1 {
 }
 
 #nav-bg{ 
-  border-radius: 9%;
+  border-radius: 10%;
 }
 
 #card {
@@ -41,12 +41,9 @@ h1 {
 
 .navbar-toggler { 
   background-color: #4ae7c5;
-  border-radius: 30%;
+  border-radius: 15%;
 }
 
-.navbar-toggle-icon {
-  color: #024537;
-}
 .carousel-inner {
   border-radius: 2%;
 }

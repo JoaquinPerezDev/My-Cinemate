@@ -1,16 +1,18 @@
-<h1 class="display-3 d-flex justify-content-center">{{original_title}}</h1>
-             
+<div class="container">
+    <h1 class="display-3 d-flex justify-content-center" >{{original_title}}</h1>
+                
 
-<h2 class="text-center" >Movie details</h2>
-<img  class="mx-auto d-block col-6" src="https://www.themoviedb.org/t/p/w220_and_h330_face{{poster_path}}" alt="{{title}}">
-<h3 class="text-center">"{{tagline}}"</h3>
-<p class="text-center">Runtime:{{runtime}} minutes</p> 
-<p class="text-center">Genres:{{#each genres}} {{name}} {{/each}}</p> 
-<p class="text-center">Vote Average:{{vote_average}}</p> 
+    <h2 class="text-center" >Movie details</h2>
+    <img  class="mx-auto d-block col-12" src="https://www.themoviedb.org/t/p/w220_and_h330_face{{poster_path}}" alt="{{title}}">
+    <h3 class="text-center">"{{tagline}}"</h3>
+    <p class="text-center">Runtime:{{runtime}} minutes</p> 
+    <p class="text-center">Genres:{{#each genres}} {{name}} {{/each}}</p> 
+    <p class="text-center">Vote Average:{{vote_average}}</p> 
 
-<p class="text-center">
-    {{overview}}
-</p>
+    <p class="text-center">
+        {{overview}}
+    </p>
 
-<br>
-<a id="review-link" href="/posts/create?movieId={{id}}">Write a review for this movie</a>
+    <br>
+    <a id="review-link" href="/posts/create?movieId={{id}}">Write a review for this movie</a>
+</div>

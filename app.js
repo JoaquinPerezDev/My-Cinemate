@@ -19,9 +19,9 @@ const app = express();
 require("./config")(app);
 
 const capitalized = require("./utils/capitalized");
-const projectName = "Cinemate";
+const projectName = "MyCinemate";
 
-app.locals.appTitle = `Welcome to ${capitalized(projectName)}`;
+app.locals.appTitle = `${capitalized(projectName)}`;
 
 app.use((req, res, next) => {
     if(!req.session.currentUser) {

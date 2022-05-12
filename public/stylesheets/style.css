@@ -66,3 +66,17 @@ h1 {
   margin-left: 40%;
 }
 
+.lang {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .lang-small {
+    display: none;
+  }
+  .lang {
+    display: inline;
+  }
+  
+}
+

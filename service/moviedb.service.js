@@ -3,7 +3,6 @@
 const axios = require('axios');
  
 class MovieDBService {
-    static currentLanguage = 'es';
 
     constructor() {
       this.api = axios.create({
@@ -13,44 +12,40 @@ class MovieDBService {
             'Content-Type': 'application/json;charset=utf-8' 
         } 
       });
-      this.currentLanguage = 'es';
     }
    
-    toggleLanguage = (lang) => {
-        this.currentLanguage = lang;
-        //toggles between any language, stored in our session. for future additions to languages.
-    }
 
-    getTrendingWeeklyMovies = () => {
-      return this.api.get(`/trending/movie/week?language=${this.currentLanguage}`);
+    getTrendingWeeklyMovies = (lang) => {
+        
+      return this.api.get(`/trending/movie/week?language=${lang}`);
     };
    
-    getTrendingWeeklyTv = () => {
-        return this.api.get(`/trending/tv/week?language=${this.currentLanguage}`);
+    getTrendingWeeklyTv = (lang) => {
+        return this.api.get(`/trending/tv/week?language=${lang}`);
     };
     
-    getTrendingWeeklyPeople = () => {
-        return this.api.get(`/trending/person/week?language=${this.currentLanguage}`);
+    getTrendingWeeklyPeople = (lang) => {
+        return this.api.get(`/trending/person/week?language=${lang}`);
     };
     
-    getTrendingDailyMovies = () => {
-        return this.api.get(`/trending/movie/day?language=${this.currentLanguage}`);
+    getTrendingDailyMovies = (lang) => {
+        return this.api.get(`/trending/movie/day?language=${lang}`);
     };
      
-    getTrendingDailyTv = () => {
-        return this.api.get(`/trending/tv/day?language=${this.currentLanguage}`);
+    getTrendingDailyTv = (lang) => {
+        return this.api.get(`/trending/tv/day?language=${lang}`);
     };
     
-    getTrendingDailyPeople = () => {
-        return this.api.get(`/trending/person/day?language=${this.currentLanguage}`);
+    getTrendingDailyPeople = (lang) => {
+        return this.api.get(`/trending/person/day?language=${lang}`);
     };
 
-    getMovieDetails = (movieId) => {
-        return this.api.get(`/movie/${movieId}?language=${this.currentLanguage}`);
+    getMovieDetails = (movieId, lang) => {
+        return this.api.get(`/movie/${movieId}?language=${lang}`);
     }
 
-    getTvDetails = (tvId) => {
-        return this.api.get(`/tv/${tvId}?language=${this.currentLanguage}`);
+    getTvDetails = (tvId, lang) => {
+        return this.api.get(`/tv/${tvId}?language=${lang}`);
     }
 
 }

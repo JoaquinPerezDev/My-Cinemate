@@ -1,0 +1,17 @@
+<div class="container">
+    <h1 class="display-3 d-flex justify-content-center">{{original_name}}</h1>
+
+    <h2 class="text-center" >Detalles</h2>
+    <img  class="mx-auto d-block col-9 poster" src="https://www.themoviedb.org/t/p/w220_and_h330_face{{poster_path}}" alt="{{title}}">
+    <h3 class="text-center">"{{tagline}}"</h3>
+    <p class="text-center">Duracion:{{runtime}} minutos</p> 
+    <p class="text-center">Generos:{{#each genres}} {{name}} {{/each}}</p> 
+    <p class="text-center">Promedio de voto:{{vote_average}}</p> 
+
+    <p class="text-center">
+        {{overview}}
+    </p>
+
+    <br>
+    <a id="review-link" href="/posts/create?movieId={{id}}">Publica tu critica sobre esta pelicula</a>
+</div>

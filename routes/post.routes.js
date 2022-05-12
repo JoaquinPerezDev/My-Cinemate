@@ -83,14 +83,14 @@ router.get('/posts/:postId', (req, res, next) => {
         })
         .then(foundPost => {
         if(foundPost.movieId) {
-            movieDatabase.getMovieDetails(foundPost.movieId)
+            movieDatabase.getMovieDetails(foundPost.movieId, req.session.lang)
                 .then(movieDetailsObject => {
                     console.log(foundPost)
                     res.render("posts/post-detail", { foundPost, movieDetailsObject })
                 })
                 .catch(error => console.log(error));
         } else {
-            movieDatabase.getTvDetails(foundPost.tvId)
+            movieDatabase.getTvDetails(foundPost.tvId, req.session.lang)
             .then(tvDetailsObject => {
                 res.render("posts/post-detail", { foundPost, tvDetailsObject })
             })

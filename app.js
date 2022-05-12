@@ -25,9 +25,18 @@ app.locals.appTitle = `${capitalized(projectName)}`;
 
 app.use((req, res, next) => {
     if(!req.session.currentUser) {
-        app.set('view options', { layout: 'logged-out-layout' });
+        if(req.session.lang !== 'es') {
+            app.set('view options', { layout: 'en-logged-out-layout' });
+        } else {
+            app.set('view options', { layout: 'es-logged-out-layout' });
+
+        }
     } else {
-        app.set('view options', { layout: 'logged-in-layout' });
+        if(req.session.lang !== 'es') {
+            app.set('view options', { layout: 'en-logged-in-layout' });
+        } else {
+            app.set('view options', { layout: 'es-logged-in-layout' });
+        }
     }
     next()
 });

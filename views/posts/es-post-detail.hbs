@@ -1,14 +1,14 @@
 
 <div>
-    written by: {{foundPost.author.username}}
+    Escrita por: {{foundPost.author.username}}
 </div>
 <div>
     {{foundPost.content}}
     {{foundPost.rating}}
 </div>
 <div>
-            <a href="/posts/{{foundPost._id}}/edit">Edit your review</a><br>
-              <a href="/posts/{{foundPost._id}}/delete">Delete your review</a><br>
+            <a href="/posts/{{foundPost._id}}/edit">Edita tu critica</a><br>
+              <a href="/posts/{{foundPost._id}}/delete">Borra tu critica</a><br>
 </div>
 
 
@@ -25,7 +25,7 @@
 {{/if}}
 
 {{#unless foundPost.comments}}
-    <p>No comments yet!</p>
+    <p>No hay comentarios!</p>
 {{/unless}}
 
 {{#each foundPost.comments}}
@@ -35,14 +35,14 @@
 
 
 <div>
-    <h3>Start a conversation!</h3>
+    <h4>Empieza la conversacion!</h4>
 </div>
 <form action="/posts/{{foundPost._id}}/comment" method="post">
 
 <input type="text" name="postAuthor" value="{{author.username}}" hidden />
-<textarea name="content" id="" cols="30" rows="3"></textarea>
+<textarea name="content" id="" cols="25" rows="3"></textarea>
 
-<button type="submnit">Comment</button>
+<button type="submnit">Comenta</button>
 </form>
 
 {{!-- <a href="/{{foundPost._id}}/posts">See all {{foundPost.author.username}}'s posts</a> --}}

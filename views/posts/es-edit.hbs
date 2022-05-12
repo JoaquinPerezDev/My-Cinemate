@@ -1,0 +1,17 @@
+<h2>Edit tu critica: {{post.title}}</h2>
+
+<form action="/posts/{{post._id}}/edit" method="post">
+  <label> Titulo:
+    <input type="text" name="title" value="{{post.title}}" />
+  </label>
+
+  <label> Contenido:
+    <textarea name="content" cols="30" rows="10">{{post.content}}</textarea>
+  </label>
+ 
+  <label> Evaluacion:
+    <input type="number" name="rating" min="1" max="10" value="{{post.rating}}" />
+  </label>
+ 
+  <button>Guardar</button>
+</form>

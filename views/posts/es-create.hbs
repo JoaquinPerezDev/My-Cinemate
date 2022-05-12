@@ -1,0 +1,35 @@
+<h2>Create a new post!</h2>
+ {{#if movieId}}
+<form action="/posts/create?movieId={{movieId}}" method="post">
+  <label> Titulo:
+    <input type="text" name="title" />
+  </label>
+
+  <label> Contenido:
+    <textarea name="content" cols="30" rows="10"> </textarea>
+  </label>
+ 
+  <label> Evaluacion:
+    <input type="number" name="rating" min="1" max="10" />
+  </label>
+ 
+  <button type="submit"> Publica </button>
+</form>
+
+{{else}}
+<form action="/posts/create?tvId={{tvId}}" method="post">
+  <label> Titulo:
+    <input type="text" name="title" />
+  </label>
+
+  <label> Contenido:
+    <textarea name="content" cols="30" rows="10"> </textarea>
+  </label>
+ 
+  <label> Evaluacion:
+    <input type="number" name="rating" min="1" max="10" />
+  </label>
+ 
+  <button type="submit"> Publica </button>
+</form>
+{{/if}}

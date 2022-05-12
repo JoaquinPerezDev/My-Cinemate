@@ -1,0 +1,80 @@
+<div id="top-banner">
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="https://www.themoviedb.org/t/p/original/64a8imymtJ4WOzIeyUHLtZnJ3wv.jpg" alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="https://www.themoviedb.org/t/p/original/9nMKJtMuhB6wiLaGLxnmTCD6g3m.jpg" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="https://www.themoviedb.org/t/p/original/ewUqXnwiRLhgmGhuksOdLgh49Ch.jpg" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="https://www.themoviedb.org/t/p/original/1S71E8NX0hn7awlmpy2Vpy2EuWj.jpg" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="https://www.themoviedb.org/t/p/original/1Rr5SrvHxMXHu5RjKpaMba8VTzi.jpg" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="https://www.themoviedb.org/t/p/original/ytQrbnfvblnbNRGoHAKsSrAo3B0.jpg" alt="Second slide">
+    </div>                
+  </div>
+    </div>
+</div>
+<div class="d-flex justify-content-center container">
+      <h1 class="display-3" id="main-title">{{appTitle}}</h1>
+</div>
+<br>
+<br>
+<br>
+<div class="d-flex justify-content-center container">
+    <h1>Peliculas</h1>
+</div>
+<div class="d-flex justify-content-center container">
+    <h3>Lo Mas Popular <br>De Esta Semana</h3>
+</div>
+
+
+
+<div class="card-group container" id="card-group" >
+{{#each moviesArray}}
+<div class="container col-sm-3 align-items-stretch mt-2 mb-2" >
+  <div class="card h-100 text-center" id="card">
+    <img class="card-img-top" id="posters" src="https://www.themoviedb.org/t/p/w220_and_h330_face{{poster_path}}" alt="{{title}}">
+    <div class="card-body">
+      <h4 class="card-title font-weight-bold">{{title}}</h4>
+      <p class="card-text">Estreno:<br>{{release_date}}</p>
+        <a href="/movie-details/{{id}}" alt="movie details" class="card-link">Detalles</a>
+    </div>
+  </div>
+  </div>
+{{/each}}
+</div>
+<br>
+<br>
+<br>
+<div class="d-flex justify-content-center container">
+    <h1>Series de Television</h1>
+</div>
+<div class="d-flex justify-content-center container">
+    <h3>Lo Mas Popular <br>De Esta Semana</h3>
+</div>
+<div class="card-group container">
+{{#each tvArray}}
+<div class="container col-sm-3 align-items-stretch mt-2 mb-2">
+  <div class="card h-100 text-center" id="card">
+    <img class="card-img-top" id="posters" src="https://www.themoviedb.org/t/p/w220_and_h330_face{{poster_path}}" alt="{{title}}">
+    <div class="card-body">
+      <h4 class="card-title font-weight-bold">{{name}}</h4>
+      <p class="card-text">Estreno:<br>{{first_air_date}}</p>
+        <a href="/tv-details/{{id}}" alt="tv details" class="card-link">Detalles</a>
+    </div>
+  </div>
+  </div>
+{{/each}}
+</div>
+
+
+
+

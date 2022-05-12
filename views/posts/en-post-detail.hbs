@@ -1,0 +1,48 @@
+
+<div>
+    written by: {{foundPost.author.username}}
+</div>
+<div>
+    {{foundPost.content}}
+    {{foundPost.rating}}
+</div>
+<div>
+            <a href="/posts/{{foundPost._id}}/edit">Edit your review</a><br>
+              <a href="/posts/{{foundPost._id}}/delete">Delete your review</a><br>
+</div>
+
+
+{{#if movieDetailsObject}}
+<h2>{{title}}</h2>
+<img src="https://www.themoviedb.org/t/p/w220_and_h330_face{{poster_path}}" alt="{{title}}"> 
+{{!-- get all the movie details to load on this page for the review/post --}}
+{{else}}
+<h2>{{tvDetailsObject.title}}</h2>
+<img src="https://www.themoviedb.org/t/p/w220_and_h330_face{{poster_path}}" alt="{{title}}"> 
+
+{{!-- get all the tv details to load on this page for the review/post --}}
+
+{{/if}}
+
+{{#unless foundPost.comments}}
+    <p>No comments yet!</p>
+{{/unless}}
+
+{{#each foundPost.comments}}
+    <p><b>{{this.author.username}}:<b> {{this.content}}</p>
+
+{{/each}}
+
+
+<div>
+    <h4>Start a conversation!</h4>
+</div>
+<form action="/posts/{{foundPost._id}}/comment" method="post">
+
+<input type="text" name="postAuthor" value="{{author.username}}" hidden />
+<textarea name="content" id="" cols="25" rows="3"></textarea>
+
+<button type="submnit">Comment</button>
+</form>
+
+{{!-- <a href="/{{foundPost._id}}/posts">See all {{foundPost.author.username}}'s posts</a> --}}

@@ -17,10 +17,17 @@ router.get("/", (req, res, next) => {
   //response will produce array of all three data set requests
     .then((responseArray) => { 
       // console.log(responseArray)
-      res.render("index", { 
-        moviesArray: responseArray[0].data.results, 
-        tvArray: responseArray[1].data.results
-      })
+      if(req.session.lang !== 'es') {
+        res.render("en-index", { 
+          moviesArray: responseArray[0].data.results, 
+          tvArray: responseArray[1].data.results
+        });
+      } else {
+        res.render("es-index", { 
+          moviesArray: responseArray[0].data.results, 
+          tvArray: responseArray[1].data.results
+        });
+      }
     })
     .catch(error => console.log(error));
 });

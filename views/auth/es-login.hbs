@@ -1,0 +1,30 @@
+<div class="card" id="login-form" style="width: 20rem">
+  <div class="card-body">
+ <form action="/login" method="POST">
+  <div class="form-group">
+    <label>Nombre de usuario
+    <input type="username" name="username" class="form-control">
+    </label>
+  </div>
+  <div class="form-group">
+    <label>Contraseña
+    <input type="password" name="password" class="form-control">
+  </label>
+      <small class="form-text text-muted">Nunca compartiremos sus datos con nadie.</small>
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Soy la pera limonera🍋</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Iniciar</button>
+</form>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><a href="/signup" class="stretched-link">No estas registrado? <br>Registrate aqui!</a></li>
+  </ul>
+  </div>
+</div>
+
+   {{#if errorMessage}}
+   <p class="error" style="color: red;">{{errorMessage}}</p> 
+   {{/if}}
+

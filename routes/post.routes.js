@@ -14,14 +14,22 @@ router.get("/posts/create", isLoggedIn, (req, res, next) => {
         movieId = req.query.movieId;
         User.findById(req.session.currentUser._id)
         .then((dbUser) => {
-            res.render("posts/create", { dbUser, movieId });
+            if(req.session.lang !== 'es') {
+                res.render("posts/en-create", { dbUser, movieId });
+              } else {
+                res.render("posts/es-create", { dbUser, movieId });
+              }
         })
         .catch((err) => console.log(`error while displaying the post: ${err}`));
     } else {
         tvId = req.query.tvId;
         User.findById(req.session.currentUser._id)
         .then((dbUser) => {
-            res.render("posts/create", { dbUser, tvId });
+            if(req.session.lang !== 'es') {
+                res.render("posts/en-create", { dbUser, tvId });
+              } else {
+                res.render("posts/es-create", { dbUser, tvId });
+              }
         })
         .catch((err) => console.log(`error while displaying the post: ${err}`));
     }
@@ -38,7 +46,14 @@ router.post('/posts/create', isLoggedIn, (req, res, next) => {
         .then(dbPost => {
             return User.findByIdAndUpdate(author, { $push: { posts: dbPost._id } });
         })
-        .then(() => res.redirect('/post-list'))
+        .then(() => {
+            if(req.session.lang !== 'es') {
+                res.redirect('/en-post-list');
+              } else {
+                res.redirect('/es-post-list');
+              }
+            })
+            
         .catch(err => {
             throw new Error(`Error while creating the post! ${err}`);
         });
@@ -48,7 +63,13 @@ router.post('/posts/create', isLoggedIn, (req, res, next) => {
         .then(dbPost => {
             return User.findByIdAndUpdate(author, { $push: { posts: dbPost._id } });
         })
-        .then(() => res.redirect('/post-list'))
+        .then(() => {
+            if(req.session.lang !== 'es') {
+                res.redirect('/en-post-list');
+              } else {
+                res.redirect('/es-post-list');
+              }
+        })
         .catch(err => {
             throw new Error(`Error while creating the post! ${err}`);
         });
@@ -61,7 +82,11 @@ router.get('/post-list', (req, res, next) => {
     Post.find()
         .populate('author')
         .then(dbPosts => {
-            res.render('posts/post-list', { dbPosts });
+            if(req.session.lang !== 'es') {
+                res.render('posts/en-post-list', { dbPosts });
+              } else {
+                res.render('posts/es-post-list', { dbPosts });
+              }
         })
         .catch(err => {
             console.log(`Err retrieving posts from database: ${err}`);
@@ -85,14 +110,21 @@ router.get('/posts/:postId', (req, res, next) => {
         if(foundPost.movieId) {
             movieDatabase.getMovieDetails(foundPost.movieId, req.session.lang)
                 .then(movieDetailsObject => {
-                    console.log(foundPost)
-                    res.render("posts/post-detail", { foundPost, movieDetailsObject })
+                    if(req.session.lang !== 'es') {
+                        res.render("posts/en-post-detail", { foundPost, movieDetailsObject })
+                      } else {
+                        res.render("posts/es-post-detail", { foundPost, movieDetailsObject })
+                      }
                 })
                 .catch(error => console.log(error));
         } else {
             movieDatabase.getTvDetails(foundPost.tvId, req.session.lang)
             .then(tvDetailsObject => {
-                res.render("posts/post-detail", { foundPost, tvDetailsObject })
+            if(req.session.lang !== 'es') {                
+                res.render("posts/en-post-detail", { foundPost, tvDetailsObject })
+            } else {
+              res.render("posts/es-post-detail", { foundPost, tvDetailsObject })
+            }                
             })
             .catch(error => console.log(error));
         }
@@ -109,7 +141,11 @@ router.get('/posts/:postId/edit', (req, res, next) => {
 
     Post.findById(postId)
         .then(postToEdit => {
-            res.render('posts/edit', { post: postToEdit });
+            if(req.session.lang !== 'es') {                
+                res.render('posts/en-edit', { post: postToEdit });
+            } else {
+                res.render('posts/es-edit', { post: postToEdit });
+            } 
         })
         .catch(err => next(err));
 });
@@ -119,7 +155,13 @@ router.post('/posts/:postId/edit', (req, res, next) => {
     const { title, content, rating } = req.body;
 
     Post.findByIdAndUpdate(postId, { title, content, rating }, { new: true })
-        .then(updatePost => res.redirect('/post-list'))
+        .then(updatePost => {
+            if(req.session.lang !== 'es') {                
+                res.redirect('/en-post-list', updatePost)
+            } else {
+                res.redirect('/es-post-list', updatePost)
+            }  
+        })
         .catch(err => next(err));
 });
 
@@ -127,7 +169,14 @@ router.post('/posts/:postId/delete', (req, res, next) => {
     const { postId } = req.params;
 
     Post.findByIdAndDelete(postId)
-        .then(() => res.redirect('/post-list'))
+        .then(() => {
+            if(req.session.lang !== 'es') {                
+                res.redirect('/en-post-list')
+            } else {
+                res.redirect('/es-post-list')
+            }             
+
+        })
         .catch(err => next(err));
 });
 
@@ -138,8 +187,12 @@ console.log(userId)
     User.findById(userId)
         .populate('posts')
         .then(user => {
-            console.log(user)
-            res.render('posts/author-posts', { posts: user.posts })
+            if(req.session.lang !== 'es') {                
+                res.render('posts/en-author-posts', { posts: user.posts })
+            } else {
+                res.render('posts/es-author-posts', { posts: user.posts })
+            } 
+
         })
         .catch(error => console.log(error));
 });

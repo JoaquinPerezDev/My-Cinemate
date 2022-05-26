@@ -37,22 +37,24 @@ router.get("/watchlist/create", isLoggedIn, (req, res, next) => {
   }
 });
 
-router.post("/posts/create", isLoggedIn, (req, res, next) => {
+router.post("/watchlists/create", isLoggedIn, (req, res, next) => {
   const { title, content, rating } = req.body;
   let movieId, tvId;
   const author = req.session.currentUser._id;
 
   if (req.query.movieId) {
     movieId = req.query.movieId;
-    Post.create({ title, content, rating, movieId, author })
-      .then((dbPost) => {
-        return User.findByIdAndUpdate(author, { $push: { posts: dbPost._id } });
+    Watchilist.create({ title, content, rating, movieId, author })
+      .then((dbWatchlists) => {
+        return User.findByIdAndUpdate(author, {
+          $push: { watchlists: dbWatchlists._id },
+        });
       })
       .then(() => {
         if (req.session.lang !== "es") {
-          res.redirect("/en-post-list");
+          res.redirect("/en-user-watchlist");
         } else {
-          res.redirect("/es-post-list");
+          res.redirect("/es-user-watchlist");
         }
       })
 
@@ -61,15 +63,17 @@ router.post("/posts/create", isLoggedIn, (req, res, next) => {
       });
   } else {
     tvId = req.query.tvId;
-    Post.create({ title, content, rating, tvId, author })
-      .then((dbPost) => {
-        return User.findByIdAndUpdate(author, { $push: { posts: dbPost._id } });
+    Watchlist.create({ title, content, rating, tvId, author })
+      .then((dbWatchlists) => {
+        return User.findByIdAndUpdate(author, {
+          $push: { watchlists: dbWatchlists._id },
+        });
       })
       .then(() => {
         if (req.session.lang !== "es") {
-          res.redirect("/en-post-list");
+          res.redirect("/en-user-watchlist");
         } else {
-          res.redirect("/es-post-list");
+          res.redirect("/es-user-watchlist");
         }
       })
       .catch((err) => {

@@ -9,6 +9,9 @@ const postSchema = new Schema(
     content: {
       type: String
     },
+    rating: {
+      type: Number
+    },
     author: {type: Schema.Types.ObjectId, ref: 'User' },
     movieId: String,
     tvId: String,
